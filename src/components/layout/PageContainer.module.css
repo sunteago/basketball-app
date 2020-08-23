@@ -1,5 +1,13 @@
+.Layout {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 100vh;
+  position: relative;
+}
+
 .Header {
-  position: fixed;
+  position: absolute;
   padding: 0 1rem;
   width: 100%;
   display: flex;
@@ -9,6 +17,7 @@
 .Content {
   padding: 2rem 3rem;
   margin-top: 64px;
+  background: url(../../assets/img/undraw_basketball_agx4.svg);
 }
 
 .Logo {

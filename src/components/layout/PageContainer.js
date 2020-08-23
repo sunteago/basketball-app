@@ -7,7 +7,7 @@ import Logo from "../../assets/img/basketball.svg";
 const { Header, Footer, Sider, Content } = Layout;
 
 export default function PageContainer(props) {
-  const { currPage, setCurrPage } = props;
+  const { currPage, setCurrPage, children, sideChildren } = props;
 
   return (
     <Layout className={classes.Layout}>
@@ -16,16 +16,9 @@ export default function PageContainer(props) {
         <Navbar />
       </Header>
       <Layout>
-        <Content className={classes.Content}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-          inventore cupiditate dignissimos repellat eaque, minima a veritatis
-          ullam aut rerum amet voluptatum sequi vel natus aspernatur minus,
-          similique perspiciatis nam dolorem. Fugit animi incidunt et optio
-          error. Iusto accusantium perferendis quibusdam ratione, assumenda
-          deleniti. Suscipit molestiae necessitatibus consequuntur illo nostrum.
-        </Content>
-        <Sider breakpoint="lg" collapsedWidth="0">
-          Sider
+        <Content className={classes.Content}>{children}</Content>
+        <Sider breakpoint="lg" collapsedWidth="0" reverseArrow width={200}>
+          {sideChildren}
         </Sider>
       </Layout>
       <Footer>Footer</Footer>

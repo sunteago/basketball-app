@@ -1,14 +1,23 @@
 import React from "react";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import PageContainer from "../components/layout/PageContainer";
 import AddShot from "../components/AddShot/";
+import Dashboard from "../components/Dashboard";
+import AddStudent from "../components/AddStudent";
 
 export default function AppRoutes() {
   return (
-    <PageContainer sideChildren={<AddShot />}>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae odio error
-      obcaecati officiis laudantium, illo eveniet numquam sint deleniti
-      voluptatibus? Consequuntur ipsa doloribus, unde dolore officia nulla quas
-      labore quia.
-    </PageContainer>
+    <Router>
+      <PageContainer sideChildren={<AddShot />}>
+        <Switch>
+          <Route path="/add-student">
+            <AddStudent />
+          </Route>
+          <Route path="/">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </PageContainer>
+    </Router>
   );
 }

@@ -1,0 +1,6 @@
+.App {
+  background: url("./assets/img/undraw_basketball_agx4.svg") no-repeat 30% 15%;
+  background-size: cover;
+  min-height: 100vh;
+  margin: 1.5rem;
+}

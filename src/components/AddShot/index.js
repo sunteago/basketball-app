@@ -44,13 +44,15 @@ export default function AddShot() {
   useEffect(() => {
     let timerId;
     if (!isCollapsed) {
-      studentsSelectRef.current.focus();
+      if (students.length > 0) {
+        studentsSelectRef.current.focus();
+      }
       timerId = setTimeout(() => setDropdownOpen(true), 200);
     }
     return () => {
-      clearTimeout(timerId);
+      if (timerId) clearTimeout(timerId);
     };
-  }, [isCollapsed]);
+  }, [isCollapsed, students]);
 
   const onFinishHandler = (values) => {
     setShots((prevShots) => [
@@ -66,6 +68,7 @@ export default function AddShot() {
     ]);
     resetFields();
     history.push("/");
+    setTimeout(() => setDropdownOpen(true), 300);
   };
 
   const onClickAddStudent = () => {

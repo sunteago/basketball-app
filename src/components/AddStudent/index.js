@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import { Form, Input, Button, Typography } from "antd";
 
 import classes from "./index.module.css";
@@ -22,6 +22,12 @@ export default function AddStudent() {
 
   const { setStudents } = useContext(StudentsContext);
 
+  const studentRef = useRef();
+
+  useEffect(() => {
+    studentRef.current.focus();
+  }, []);
+
   const onFinishHandler = (values) => {
     setStudents((prevStudents) => [
       ...prevStudents,
@@ -33,13 +39,14 @@ export default function AddStudent() {
       },
     ]);
     resetFields();
+    studentRef.current.focus();
   };
 
   const resetFields = () => form.resetFields();
 
   return (
     <>
-      <Title className={classes.Title}>Agregar Alumno</Title>
+      <Title className={classes.Title}>Nuevo Alumno</Title>
       <div className={classes.Container}>
         <Form
           className={classes.Form}
@@ -53,7 +60,7 @@ export default function AddStudent() {
             label="Alumno"
             rules={requiredRules("alumno")}
           >
-            <Input />
+            <Input ref={studentRef} />
           </Form.Item>
           <Form.Item
             className={classes.FormItem}

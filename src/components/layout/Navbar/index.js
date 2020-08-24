@@ -15,7 +15,7 @@ export default function Navbar() {
         <Link to="/">Inicio</Link>
       </Menu.Item>
       <Menu.Item key="2">
-        <Link to="/add-student">Agregar Alumno</Link>
+        <Link to="/add-student">Nuevo Alumno</Link>
       </Menu.Item>
       <Menu.Item key="3">
         <Link to="/about">Acerca</Link>

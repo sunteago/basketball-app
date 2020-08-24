@@ -1,0 +1,15 @@
+.Form {
+  margin-top: 1rem;
+}
+
+.FormButtons > div > div > div {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.FormButtons button {
+  flex: 0 1 30%;
+  margin-bottom: 1rem;
+}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./index.module.css";
-import { Checkbox, Button, InputNumber, Divider } from "antd";
+import { Form, Checkbox, Button, InputNumber, Divider } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import SelectInput from "../form/SelectInput/";
 
@@ -18,7 +18,7 @@ export default function AddShot() {
         <h2 className={classes.Title}>Agregar Tiro</h2>
       </div>
       <Divider className={classes.Divider} />
-      <form className={classes.FormContainer} onSubmit={onSubmitHandler}>
+      <Form className={classes.FormContainer} onSubmit={onSubmitHandler}>
         <div className={classes.FormInput}>
           <SelectInput />
         </div>
@@ -60,7 +60,7 @@ export default function AddShot() {
         >
           Agregar Tiro
         </Button>
-      </form>
+      </Form>
     </>
   );
 }

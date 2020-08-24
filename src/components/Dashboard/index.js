@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
-import { Table, Grid } from "antd";
+import { Table, Grid, Typography } from "antd";
 import classes from "./index.module.css";
 import ShotsContext from "../../context/shots/ShotsContext";
 import { getPositionFromId } from "../../utils";
+
+const { Title } = Typography;
 
 const shotsColumns = (onDelete) => [
   {
@@ -49,15 +51,21 @@ export default function Dashboard() {
     setShots(shots.filter((shotItem) => shotItem.key !== shot.key));
   };
 
-  const sortedShots = shots.sort((a, b) => b.date - a.date);
+  const sortedShots = shots && shots.sort((a, b) => b.date - a.date);
 
   return (
-    <Table
-      className={classes.Table}
-      tableLayout="auto"
-      columns={shotsColumns(onDeleteHandler)}
-      dataSource={sortedShots}
-      size={screens.md ? "large" : "small"}
-    />
+    <>
+      <Title style={{ marginBottom: "2rem" }}>Últimos tiros</Title>
+      <Table
+        className={classes.Table}
+        tableLayout="auto"
+        columns={shotsColumns(onDeleteHandler)}
+        dataSource={sortedShots}
+        size={screens.md ? "large" : "small"}
+        locale={{
+          emptyText: "No has agregado a ningun tiro aún",
+        }}
+      />
+    </>
   );
 }

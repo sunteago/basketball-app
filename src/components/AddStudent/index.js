@@ -1,8 +1,11 @@
 import React, { useContext } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Typography } from "antd";
+
 import classes from "./index.module.css";
 import StudentsList from "../StudentsList";
 import StudentsContext from "../../context/students/StudentsContext";
+
+const { Title } = Typography;
 
 const requiredRules = (field) => [
   {
@@ -36,33 +39,42 @@ export default function AddStudent() {
 
   return (
     <>
-      <Form
-        className={classes.Form}
-        form={form}
-        name="control-hooks"
-        onFinish={onFinishHandler}
-      >
-        <Form.Item
-          name="student"
-          label="Alumno"
-          rules={requiredRules("alumno")}
+      <Title className={classes.Title}>Agregar Alumno</Title>
+      <div className={classes.Container}>
+        <Form
+          className={classes.Form}
+          form={form}
+          name="control-hooks"
+          onFinish={onFinishHandler}
         >
-          <Input />
-        </Form.Item>
-        <Form.Item name="docket" label="Legajo" rules={requiredRules("legajo")}>
-          <Input />
-        </Form.Item>
+          <Form.Item
+            className={classes.FormItem}
+            name="student"
+            label="Alumno"
+            rules={requiredRules("alumno")}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            className={classes.FormItem}
+            name="docket"
+            label="Legajo"
+            rules={requiredRules("legajo")}
+          >
+            <Input />
+          </Form.Item>
 
-        <Form.Item className={classes.FormButtons}>
-          <Button type="primary" htmlType="submit">
-            Agregar
-          </Button>
-          <Button htmlType="button" onClick={resetFields}>
-            Borrar todo
-          </Button>
-        </Form.Item>
-      </Form>
-      <StudentsList />
+          <Form.Item className={classes.FormButtons}>
+            <Button type="primary" htmlType="submit">
+              Agregar
+            </Button>
+            <Button htmlType="button" onClick={resetFields}>
+              Limpiar campos
+            </Button>
+          </Form.Item>
+        </Form>
+        <StudentsList />
+      </div>
     </>
   );
 }

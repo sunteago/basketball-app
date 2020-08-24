@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import classes from "./index.module.css";
 import { Layout } from "antd";
 import { PlusCircleOutlined, DoubleRightOutlined } from "@ant-design/icons";
-import Navbar from "../Navbar";
+
 import Logo from "../../../assets/img/basketball.svg";
+import Navbar from "../Navbar";
+import ContentBox from "../ContentBox";
 import FooterContent from "../Footer";
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -23,11 +25,14 @@ export default function PageContainer(props) {
         <Navbar />
       </Header>
       <Layout>
-        <Content className={classes.Content}>{children}</Content>
+        <Content className={classes.Content}>
+          <ContentBox>{children}</ContentBox>
+        </Content>
         <Sider
           trigger={
             isCollapsed ? <PlusCircleOutlined /> : <DoubleRightOutlined />
           }
+          className={classes.Sider}
           breakpoint="lg"
           collapsedWidth="0"
           reverseArrow

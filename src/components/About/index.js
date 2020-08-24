@@ -2,24 +2,29 @@ import React from "react";
 import classes from "./index.module.css";
 import { Typography } from "antd";
 import { LinkedinFilled, GithubFilled } from "@ant-design/icons";
+import ImageDecoration from "../../assets/img/undraw_greek_freak_j2qb.svg";
+
 const { Paragraph, Title } = Typography;
 
 //tOdo: features
 export default function About() {
   return (
     <div className={classes.About}>
-      <Title>Basketball App</Title>
+      <Title>Acerca de Basketball App</Title>
       <Paragraph>
         Esta App fue creada espacialmente para{" "}
-        <span>hiring@tiendadolar.com.ar</span>
+        <span>hiring@tiendadolar.com.ar</span> por <span>Santiago Vallejo</span>
       </Paragraph>
       <Paragraph>
         Características de la App:
-        <ul className={classes.FeaturesList}>
-          <li>Diseño plano y responsive</li>
-          <li>Agregar alumno</li>
-          <li>Agregar tiro de alumno previamente agregado</li>
-          <li>Dashboard para ver ultimos tiros agregados</li>
+        <ul>
+          <li>diseño plano y responsive</li>
+          <li>agregar alumno</li>
+          <li>borrar alumno</li>
+          <li>agregar tiro de alumno previamente agregado</li>
+          <li>borrar tiro</li>
+          <li>validación de formularios</li>
+          <li>dashboard para ver ultimos tiros agregados</li>
         </ul>
       </Paragraph>
       <Paragraph>
@@ -45,6 +50,7 @@ export default function About() {
           </li>
         </ul>
       </Paragraph>
+      <img src={ImageDecoration} alt="" className={classes.ImageDecoration} />
     </div>
   );
 }

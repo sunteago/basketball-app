@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Table } from "antd";
+import classes from "./index.module.css";
 import StudentsContext from "../../context/students/StudentsContext";
 import { formatTime } from "../../utils";
 
@@ -27,15 +28,18 @@ const studentsColumn = [
 export default function StudentsList() {
   const { students } = useContext(StudentsContext);
 
-  const sortedStudents = students.sort((a, b) => b.added - a.added);
+  const sortedStudents = students && students.sort((a, b) => b.added - a.added);
 
   return (
     <Table
-      // className={classes.Table}
+      className={classes.Table}
       tableLayout="auto"
       columns={studentsColumn}
       dataSource={sortedStudents}
       size="small"
+      locale={{
+        emptyText: "No has agregado a ningun alumno aún",
+      }}
     />
   );
 }

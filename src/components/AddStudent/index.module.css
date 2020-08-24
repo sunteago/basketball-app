@@ -1,10 +1,16 @@
+.Title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .Form {
-  margin-top: 1rem;
   font-size: 1rem;
-  position: relative;
-  z-index: 1000;
-  padding: 1.5rem 2rem 0.5rem 2rem;
-  background: rgba(255, 255, 255, 0.85);
+  max-width: 90%;
 }
 
 .FormButtons > div > div > div {
@@ -16,4 +22,27 @@
 
 .FormButtons button {
   flex: 0 1 30%;
+}
+
+.FormButtons,
+.FormItem {
+  max-width: 90%;
+  width: 400px;
+}
+
+.FormItem label {
+  min-width: 80px;
+}
+
+@media (min-width: 768px) {
+  .Container {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 960px) {
+  .Container {
+    justify-content: center;
+  }
 }

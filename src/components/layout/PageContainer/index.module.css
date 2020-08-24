@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
 }
 
@@ -42,8 +42,9 @@
   background-size: cover;
   filter: grayscale(50%);
 }
-.module-inside {
-  position: relative;
+
+.Sider {
+  z-index: 1001;
 }
 
 .Footer {
@@ -52,6 +53,6 @@
 
 @media (min-width: 992px) {
   .Content {
-    padding: 2rem 3rem;
+    padding: 3rem 3rem;
   }
 }

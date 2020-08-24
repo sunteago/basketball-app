@@ -1,11 +1,21 @@
 import React, { useState, useContext } from "react";
+
 import StudentsContext from "../../context/students/StudentsContext";
 import ShotsContext from "../../context/shots/ShotsContext";
 
-import { Form, Button, InputNumber, Divider, Checkbox, Select } from "antd";
+import {
+  Form,
+  Button,
+  InputNumber,
+  Divider,
+  Checkbox,
+  Select,
+  Typography,
+} from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
 import SelectInput from "../form/SelectOptions";
+import { Link } from "react-router-dom";
 
 const requiredRules = (field) => [
   {
@@ -14,8 +24,18 @@ const requiredRules = (field) => [
   },
 ];
 
+const selectProps = {
+  showSearch: true,
+  style: { width: "100%" },
+  placeholder: "Alumno",
+  optionFilterProp: "children",
+  filterOption: (input, option) =>
+    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0,
+};
+
 export default function AddShot() {
   const [checked, setChecked] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(true);
 
   const [form] = Form.useForm();
 
@@ -36,6 +56,15 @@ export default function AddShot() {
     ]);
     resetFields();
   };
+
+  const studentsNotFound = (
+    <span>
+      No existe alumno,{" "}
+      <Link onClick={() => setDropdownOpen(false)} to="/add-student">
+        desea agregar?
+      </Link>
+    </span>
+  );
 
   const resetFields = () => form.resetFields();
 
@@ -67,13 +96,12 @@ export default function AddShot() {
           rules={requiredRules("alumno")}
         >
           <Select
-            showSearch
-            style={{ width: "100%" }}
-            placeholder="Alumno"
-            optionFilterProp="children"
-            filterOption={(input, option) =>
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
+            {...selectProps}
+            open={dropdownOpen}
+            autoFocus
+            className={classes.SelectStudent}
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            notFoundContent={studentsNotFound}
           >
             {SelectInput({ students })}
           </Select>
@@ -86,17 +114,7 @@ export default function AddShot() {
           className={classes.FormInput}
           rules={requiredRules("posición")}
         >
-          <Select
-            showSearch
-            style={{ width: "100%" }}
-            placeholder="Alumno"
-            optionFilterProp="children"
-            filterOption={(input, option) =>
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
-          >
-            {SelectInput()}
-          </Select>
+          <Select {...selectProps}>{SelectInput()}</Select>
         </Form.Item>
 
         <Form.Item

@@ -27,7 +27,7 @@ const studentsColumn = [
 export default function StudentsList() {
   const { students } = useContext(StudentsContext);
 
-  const sortedStudents = students.sort((a, b) => b.added - a.added);
+  const sortedStudents = students && students.sort((a, b) => b.added - a.added);
 
   return (
     <Table

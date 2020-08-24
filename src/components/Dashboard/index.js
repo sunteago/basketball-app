@@ -49,7 +49,7 @@ export default function Dashboard() {
     setShots(shots.filter((shotItem) => shotItem.key !== shot.key));
   };
 
-  const sortedShots = shots.sort((a, b) => b.date - a.date);
+  const sortedShots = shots && shots.sort((a, b) => b.date - a.date);
 
   return (
     <Table
@@ -58,6 +58,9 @@ export default function Dashboard() {
       columns={shotsColumns(onDeleteHandler)}
       dataSource={sortedShots}
       size={screens.md ? "large" : "small"}
+      locale={{
+        emptyText: "No has agregado a ningun alumno todavía",
+      }}
     />
   );
 }

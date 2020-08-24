@@ -41,12 +41,14 @@ export default function Dashboard() {
 
   const { shots } = useContext(ShotsContext);
 
+  const sortedShots = shots.sort((a, b) => b.date - a.date);
+
   return (
     <Table
       className={classes.Table}
       tableLayout="auto"
       columns={shotsColumns}
-      dataSource={shots}
+      dataSource={sortedShots}
       size={screens.md ? "large" : "small"}
     />
   );

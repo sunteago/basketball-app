@@ -24,6 +24,7 @@ export default function AddShot() {
         position: values.position,
         distance: values.distance,
         scored: checked,
+        date: Date.now(),
       },
     ]);
     resetFields();

@@ -44,5 +44,6 @@
 @media (min-width: 960px) {
   .Container {
     justify-content: center;
+    align-items: center;
   }
 }

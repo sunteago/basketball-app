@@ -1,5 +1,6 @@
 .ContentBox {
   position: relative;
+  min-height: 40vh;
   z-index: 1000;
   padding: 2rem 2.5rem 1rem 2.5rem;
   background: rgba(255, 255, 255, 0.85);

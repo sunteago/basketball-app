@@ -7,7 +7,7 @@ import ImageDecoration from "../../assets/img/undraw_greek_freak_j2qb.svg";
 const { Paragraph, Title } = Typography;
 
 //tOdo: features
-export default function About() {
+function About() {
   return (
     <div className={classes.About}>
       <Title>Acerca de Basketball App</Title>
@@ -54,3 +54,5 @@ export default function About() {
     </div>
   );
 }
+
+export default React.memo(About, () => true);

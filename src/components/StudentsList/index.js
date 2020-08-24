@@ -4,7 +4,7 @@ import classes from "./index.module.css";
 import StudentsContext from "../../context/students/StudentsContext";
 import { formatTime } from "../../utils";
 
-const studentsColumn = [
+const studentsColumn = (onDelete) => [
   {
     title: "Alumno",
     dataIndex: "student",
@@ -23,18 +23,30 @@ const studentsColumn = [
     key: "added",
     render: formatTime,
   },
+  {
+    title: "Borrar",
+    key: "key",
+    render: (student) => (
+      <span onClick={onDelete(student)} className={classes.DeleteIcon}>
+        &times;
+      </span>
+    ),
+  },
 ];
 
 export default function StudentsList() {
-  const { students } = useContext(StudentsContext);
+  const { students, setStudents } = useContext(StudentsContext);
 
+  const onDeleteHandler = (student) => () => {
+    setStudents(students.filter((std) => std.key !== student.key));
+  };
   const sortedStudents = students && students.sort((a, b) => b.added - a.added);
 
   return (
     <Table
       className={classes.Table}
       tableLayout="auto"
-      columns={studentsColumn}
+      columns={studentsColumn(onDeleteHandler)}
       dataSource={sortedStudents}
       size="small"
       locale={{

@@ -2,6 +2,12 @@
   margin-top: 3rem;
 }
 
+.DeleteIcon {
+  cursor: pointer;
+  color: #880101;
+  font-size: 1rem;
+}
+
 @media (min-width: 768px) {
   .Table {
     margin-top: -0;

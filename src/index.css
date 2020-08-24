@@ -13,4 +13,5 @@
 
 body {
   background: var(--main-washed);
+  overflow-x: hidden;
 }

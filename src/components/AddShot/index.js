@@ -1,17 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 
 import StudentsContext from "../../context/students/StudentsContext";
 import ShotsContext from "../../context/shots/ShotsContext";
+import UIContext from "../../context/UI/UIContext";
 
-import {
-  Form,
-  Button,
-  InputNumber,
-  Divider,
-  Checkbox,
-  Select,
-  Typography,
-} from "antd";
+import { Form, Button, InputNumber, Divider, Checkbox, Select } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
 import SelectInput from "../form/SelectOptions";
@@ -35,12 +28,26 @@ const selectProps = {
 
 export default function AddShot() {
   const [checked, setChecked] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(true);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const [form] = Form.useForm();
 
   const { students } = useContext(StudentsContext);
   const { setShots } = useContext(ShotsContext);
+  const { isCollapsed, setIsCollapsed, screens } = useContext(UIContext);
+
+  const studentsSelectRef = useRef();
+
+  useEffect(() => {
+    let timerId;
+    if (!isCollapsed) {
+      studentsSelectRef.current.focus();
+      timerId = setTimeout(() => setDropdownOpen(true), 200);
+    }
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [isCollapsed]);
 
   const onFinishHandler = (values) => {
     setShots((prevShots) => [
@@ -57,10 +64,15 @@ export default function AddShot() {
     resetFields();
   };
 
+  const onClickAddStudent = () => {
+    setDropdownOpen(false);
+    if (!screens.lg && !screens.xl) setIsCollapsed(true);
+  };
+
   const studentsNotFound = (
     <span>
       No existe alumno,{" "}
-      <Link onClick={() => setDropdownOpen(false)} to="/add-student">
+      <Link onClick={onClickAddStudent} to="/add-student">
         desea agregar?
       </Link>
     </span>
@@ -98,7 +110,7 @@ export default function AddShot() {
           <Select
             {...selectProps}
             open={dropdownOpen}
-            autoFocus
+            ref={studentsSelectRef}
             className={classes.SelectStudent}
             onClick={() => setDropdownOpen(!dropdownOpen)}
             notFoundContent={studentsNotFound}

@@ -1,6 +1,9 @@
 import React from "react";
-import classes from "./index.module.css";
 
 export default function index() {
-  return <div>footer</div>;
+  return (
+    <p style={{ color: "#fff", margin: 0, textAlign: "center" }}>
+      Basketball App - Ejercicio Frontend 2020
+    </p>
+  );
 }

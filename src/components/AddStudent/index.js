@@ -19,7 +19,7 @@ export default function AddStudent() {
 
   const { setStudents } = useContext(StudentsContext);
 
-  const onFinish = (values) => {
+  const onFinishHandler = (values) => {
     setStudents((prevStudents) => [
       ...prevStudents,
       {
@@ -40,7 +40,7 @@ export default function AddStudent() {
         className={classes.Form}
         form={form}
         name="control-hooks"
-        onFinish={onFinish}
+        onFinish={onFinishHandler}
       >
         <Form.Item
           name="student"

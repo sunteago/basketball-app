@@ -28,7 +28,6 @@ export default function PageContainer(props) {
           trigger={
             isCollapsed ? <PlusCircleOutlined /> : <DoubleRightOutlined />
           }
-          onCollapse={() => console.log("hasd")}
           breakpoint="lg"
           collapsedWidth="0"
           reverseArrow

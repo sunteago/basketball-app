@@ -1,69 +1,137 @@
 import React, { useState, useContext } from "react";
 import StudentsContext from "../../context/students/StudentsContext";
+import ShotsContext from "../../context/shots/ShotsContext";
 
-import { Form, Checkbox, Button, InputNumber, Divider } from "antd";
+import { Form, Button, InputNumber, Divider, Checkbox, Select } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
-import SelectInput from "../form/SelectInput/";
+import SelectInput from "../form/SelectOptions";
 
 export default function AddShot() {
   const [checked, setChecked] = useState(false);
-  const [distance, setDistance] = useState(1);
+
+  const [form] = Form.useForm();
 
   const { students } = useContext(StudentsContext);
+  const { setShots } = useContext(ShotsContext);
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
+  const onFinishHandler = (values) => {
+    console.log(values);
+    setShots((prevShots) => [
+      ...prevShots,
+      {
+        student: values.student,
+        docket: values.docket,
+        added: new Date().getTime(),
+        key: Math.random(),
+      },
+    ]);
+    resetFields();
   };
 
+  const resetFields = () => form.resetFields();
   return (
     <>
       <div className={classes.TitleContainer}>
         <h2 className={classes.Title}>Agregar Tiro</h2>
       </div>
       <Divider className={classes.Divider} />
-      <Form className={classes.FormContainer} onSubmit={onSubmitHandler}>
-        <div className={classes.FormInput}>
-          <SelectInput placeholder="Alumno" students={students} />
-        </div>
+      <Form
+        form={form}
+        name="control-hooks"
+        layout="vertical"
+        onFinish={onFinishHandler}
+        className={classes.FormContainer}
+        colon={false}
+        labelAlign="left"
+        initialValues={{
+          student: "",
+          position: "",
+          distance: 1.5,
+          scored: true,
+        }}
+      >
+        <Form.Item
+          name="student"
+          labelCol={{ span: 12 }}
+          label="Alumno"
+          className={classes.FormInput}
+        >
+          <Select
+            showSearch
+            style={{ width: "100%" }}
+            placeholder="Alumno"
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {SelectInput({ students })}
+          </Select>
+        </Form.Item>
 
-        <div className={classes.FormInput}>
-          <SelectInput placeholder="Posición" />
-        </div>
+        <Form.Item
+          labelCol={{ span: 12 }}
+          name="position"
+          label="Posición"
+          className={classes.FormInput}
+        >
+          <Select
+            showSearch
+            style={{ width: "100%" }}
+            placeholder="Alumno"
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {SelectInput()}
+          </Select>
+        </Form.Item>
 
-        <div className={classes.FormInput}>
+        <Form.Item
+          name="distance"
+          label="Metros"
+          className={`${classes.FormInput}`}
+        >
           <InputNumber
             className={classes.Meters}
-            defaultValue={distance}
             min={0}
             max={10}
             step={0.5}
-            onChange={(value) => setDistance(value)}
             id="distance"
           />
-          <label htmlFor="distance">mts</label>
-        </div>
+        </Form.Item>
 
-        <div className={classes.FormInput}>
+        <Form.Item
+          name="scored"
+          labelAlign="left"
+          colon={false}
+          className={`${classes.FormInput} ${classes.SwitchContainer}`}
+        >
           <Checkbox
-            className={classes.Checkbox}
+            className={classes.Switch}
             checked={checked}
             onChange={() => setChecked((prev) => !prev)}
           >
-            Encesto
+            Encesto?
           </Checkbox>
-        </div>
+        </Form.Item>
 
-        <Button
-          className={classes.Button}
-          type="primary"
-          size="small"
-          disabled={false}
-          icon={<PlusCircleOutlined />}
-          onClick={() => {}}
+        <Form.Item
+          className={`${classes.FormInput} ${classes.ButtonContainer}`}
         >
-          Agregar Tiro
-        </Button>
+          <Button
+            className={classes.Button}
+            type="primary"
+            size="small"
+            htmlType="submit"
+            disabled={false}
+            icon={<PlusCircleOutlined />}
+          >
+            Agregar Tiro
+          </Button>
+        </Form.Item>
       </Form>
     </>
   );

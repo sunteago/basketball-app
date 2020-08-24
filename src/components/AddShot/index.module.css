@@ -22,27 +22,33 @@
 }
 
 .FormContainer > div {
-  margin: 1rem 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
 }
 
 .FormInput {
   color: black;
   flex: 1;
+  margin: 0.5rem 0.3rem;
+}
+
+.FormInput:first-child {
+  margin-top: 2rem;
 }
 
 .FormInput label {
   color: #fff;
-  margin-left: 0.5rem;
 }
 
-.Checkbox {
+.SwitchContainer.FormInput,
+.DistanceContainer.FormInput {
+  margin-top: 1rem;
+}
+
+.Switch {
   color: #fff;
-  margin-left: 0;
 }
 
-.Meters {
-  flex: 1;
+.ButtonContainer > div {
+  margin-top: 1rem;
 }

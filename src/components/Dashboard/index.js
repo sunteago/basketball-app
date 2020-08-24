@@ -4,7 +4,7 @@ import classes from "./index.module.css";
 import ShotsContext from "../../context/shots/ShotsContext";
 import { getPositionFromId } from "../../utils";
 
-const shotsColumns = [
+const shotsColumns = (onDelete) => [
   {
     title: "Tirador",
     dataIndex: "student",
@@ -31,15 +31,23 @@ const shotsColumns = [
   },
   {
     title: "Borrar",
-    key: "action",
-    render: () => <span className={classes.DeleteIcon}>&times;</span>,
+    key: "key",
+    render: (shot) => (
+      <span onClick={onDelete(shot)} className={classes.DeleteIcon}>
+        &times;
+      </span>
+    ),
   },
 ];
 
 export default function Dashboard() {
   const screens = Grid.useBreakpoint();
 
-  const { shots } = useContext(ShotsContext);
+  const { shots, setShots } = useContext(ShotsContext);
+
+  const onDeleteHandler = (shot) => () => {
+    setShots(shots.filter((shotItem) => shotItem.key !== shot.key));
+  };
 
   const sortedShots = shots.sort((a, b) => b.date - a.date);
 
@@ -47,7 +55,7 @@ export default function Dashboard() {
     <Table
       className={classes.Table}
       tableLayout="auto"
-      columns={shotsColumns}
+      columns={shotsColumns(onDeleteHandler)}
       dataSource={sortedShots}
       size={screens.md ? "large" : "small"}
     />

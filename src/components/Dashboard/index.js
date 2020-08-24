@@ -2,7 +2,7 @@ import React from "react";
 import { Table, Grid } from "antd";
 import classes from "./index.module.css";
 
-const columns = [
+const shotsColumns = [
   {
     title: "Tirador",
     dataIndex: "student",
@@ -63,7 +63,7 @@ export default function Dashboard() {
     <Table
       className={classes.Table}
       tableLayout="auto"
-      columns={columns}
+      columns={shotsColumns}
       dataSource={data}
       size={screens.md ? "large" : "small"}
     />

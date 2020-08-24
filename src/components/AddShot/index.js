@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+
 import StudentsContext from "../../context/students/StudentsContext";
 import ShotsContext from "../../context/shots/ShotsContext";
 
@@ -14,6 +15,7 @@ import {
 import { PlusCircleOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
 import SelectInput from "../form/SelectOptions";
+import { Link } from "react-router-dom";
 
 const requiredRules = (field) => [
   {
@@ -33,6 +35,7 @@ const selectProps = {
 
 export default function AddShot() {
   const [checked, setChecked] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(true);
 
   const [form] = Form.useForm();
 
@@ -53,6 +56,15 @@ export default function AddShot() {
     ]);
     resetFields();
   };
+
+  const studentsNotFound = (
+    <span>
+      No existe alumno,{" "}
+      <Link onClick={() => setDropdownOpen(false)} to="/add-student">
+        desea agregar?
+      </Link>
+    </span>
+  );
 
   const resetFields = () => form.resetFields();
 
@@ -85,9 +97,11 @@ export default function AddShot() {
         >
           <Select
             {...selectProps}
-            locale={{
-              emptyText: "Agrega alumnos primero",
-            }}
+            open={dropdownOpen}
+            autoFocus
+            className={classes.SelectStudent}
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            notFoundContent={studentsNotFound}
           >
             {SelectInput({ students })}
           </Select>

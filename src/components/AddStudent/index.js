@@ -62,7 +62,7 @@ export default function AddStudent() {
             Agregar
           </Button>
           <Button htmlType="button" onClick={resetFields}>
-            Borrar todo
+            Limpiar campos
           </Button>
         </Form.Item>
       </Form>

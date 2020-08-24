@@ -1,4 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import StudentsContext from "../../context/students/StudentsContext";
 import ShotsContext from "../../context/shots/ShotsContext";
@@ -38,6 +39,8 @@ export default function AddShot() {
 
   const studentsSelectRef = useRef();
 
+  const history = useHistory();
+
   useEffect(() => {
     let timerId;
     if (!isCollapsed) {
@@ -62,6 +65,7 @@ export default function AddShot() {
       },
     ]);
     resetFields();
+    history.push("/");
   };
 
   const onClickAddStudent = () => {

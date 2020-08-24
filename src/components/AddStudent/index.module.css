@@ -28,6 +28,15 @@
 .FormItem {
   max-width: 90%;
   width: 400px;
+  margin-bottom: 0.5rem;
+}
+
+.FormButtons button {
+  margin-bottom: 1rem;
+}
+
+.FormButtons button:first-of-type {
+  order: 1;
 }
 
 .FormItem label {
@@ -38,12 +47,16 @@
   .Container {
     justify-content: space-between;
     flex-direction: row;
+    align-items: flex-start;
   }
 }
 
 @media (min-width: 960px) {
   .Container {
     justify-content: center;
-    align-items: center;
+  }
+  .FormButtons,
+  .FormItem {
+    margin-bottom: 1.5rem;
   }
 }

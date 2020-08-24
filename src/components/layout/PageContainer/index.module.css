@@ -42,8 +42,9 @@
   background-size: cover;
   filter: grayscale(50%);
 }
-.module-inside {
-  position: relative;
+
+.Sider {
+  z-index: 1001;
 }
 
 .Footer {

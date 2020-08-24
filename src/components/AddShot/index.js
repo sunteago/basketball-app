@@ -2,7 +2,15 @@ import React, { useState, useContext } from "react";
 import StudentsContext from "../../context/students/StudentsContext";
 import ShotsContext from "../../context/shots/ShotsContext";
 
-import { Form, Button, InputNumber, Divider, Checkbox, Select } from "antd";
+import {
+  Form,
+  Button,
+  InputNumber,
+  Divider,
+  Checkbox,
+  Select,
+  Typography,
+} from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
 import SelectInput from "../form/SelectOptions";
@@ -13,6 +21,15 @@ const requiredRules = (field) => [
     required: true,
   },
 ];
+
+const selectProps = {
+  showSearch: true,
+  style: { width: "100%" },
+  placeholder: "Alumno",
+  optionFilterProp: "children",
+  filterOption: (input, option) =>
+    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0,
+};
 
 export default function AddShot() {
   const [checked, setChecked] = useState(false);
@@ -67,13 +84,10 @@ export default function AddShot() {
           rules={requiredRules("alumno")}
         >
           <Select
-            showSearch
-            style={{ width: "100%" }}
-            placeholder="Alumno"
-            optionFilterProp="children"
-            filterOption={(input, option) =>
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
+            {...selectProps}
+            locale={{
+              emptyText: "Agrega alumnos primero",
+            }}
           >
             {SelectInput({ students })}
           </Select>
@@ -86,17 +100,7 @@ export default function AddShot() {
           className={classes.FormInput}
           rules={requiredRules("posición")}
         >
-          <Select
-            showSearch
-            style={{ width: "100%" }}
-            placeholder="Alumno"
-            optionFilterProp="children"
-            filterOption={(input, option) =>
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
-          >
-            {SelectInput()}
-          </Select>
+          <Select {...selectProps}>{SelectInput()}</Select>
         </Form.Item>
 
         <Form.Item

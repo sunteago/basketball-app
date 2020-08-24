@@ -32,6 +32,7 @@ export default function PageContainer(props) {
           trigger={
             isCollapsed ? <PlusCircleOutlined /> : <DoubleRightOutlined />
           }
+          className={classes.Sider}
           breakpoint="lg"
           collapsedWidth="0"
           reverseArrow

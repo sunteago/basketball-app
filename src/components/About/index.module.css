@@ -9,3 +9,19 @@ ul li:first-child {
 .SocialNetworkList li {
   list-style: none;
 }
+
+.ImageDecoration {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .ImageDecoration {
+    display: block;
+    width: 300px;
+    position: absolute;
+    transform: translate(0, -50%);
+    top: 50%;
+    right: 2rem;
+    z-index: -1;
+  }
+}

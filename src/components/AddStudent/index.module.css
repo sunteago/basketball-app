@@ -1,5 +1,16 @@
+.Title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .Form {
   font-size: 1rem;
+  max-width: 90%;
 }
 
 .FormButtons > div > div > div {
@@ -11,4 +22,27 @@
 
 .FormButtons button {
   flex: 0 1 30%;
+}
+
+.FormButtons,
+.FormItem {
+  max-width: 90%;
+  width: 400px;
+}
+
+.FormItem label {
+  min-width: 80px;
+}
+
+@media (min-width: 768px) {
+  .Container {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 960px) {
+  .Container {
+    justify-content: center;
+  }
 }

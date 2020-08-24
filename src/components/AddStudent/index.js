@@ -39,34 +39,42 @@ export default function AddStudent() {
 
   return (
     <>
-      <Title>Agregar Alumno</Title>
-      <Form
-        className={classes.Form}
-        form={form}
-        name="control-hooks"
-        onFinish={onFinishHandler}
-      >
-        <Form.Item
-          name="student"
-          label="Alumno"
-          rules={requiredRules("alumno")}
+      <Title className={classes.Title}>Agregar Alumno</Title>
+      <div className={classes.Container}>
+        <Form
+          className={classes.Form}
+          form={form}
+          name="control-hooks"
+          onFinish={onFinishHandler}
         >
-          <Input />
-        </Form.Item>
-        <Form.Item name="docket" label="Legajo" rules={requiredRules("legajo")}>
-          <Input />
-        </Form.Item>
+          <Form.Item
+            className={classes.FormItem}
+            name="student"
+            label="Alumno"
+            rules={requiredRules("alumno")}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            className={classes.FormItem}
+            name="docket"
+            label="Legajo"
+            rules={requiredRules("legajo")}
+          >
+            <Input />
+          </Form.Item>
 
-        <Form.Item className={classes.FormButtons}>
-          <Button type="primary" htmlType="submit">
-            Agregar
-          </Button>
-          <Button htmlType="button" onClick={resetFields}>
-            Limpiar campos
-          </Button>
-        </Form.Item>
-      </Form>
-      <StudentsList />
+          <Form.Item className={classes.FormButtons}>
+            <Button type="primary" htmlType="submit">
+              Agregar
+            </Button>
+            <Button htmlType="button" onClick={resetFields}>
+              Limpiar campos
+            </Button>
+          </Form.Item>
+        </Form>
+        <StudentsList />
+      </div>
     </>
   );
 }

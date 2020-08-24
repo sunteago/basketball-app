@@ -55,7 +55,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <Title>Últimos tiros</Title>
+      <Title style={{ marginBottom: "2rem" }}>Últimos tiros</Title>
       <Table
         className={classes.Table}
         tableLayout="auto"

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Table } from "antd";
+import classes from "./index.module.css";
 import StudentsContext from "../../context/students/StudentsContext";
 import { formatTime } from "../../utils";
 
@@ -31,7 +32,7 @@ export default function StudentsList() {
 
   return (
     <Table
-      // className={classes.Table}
+      className={classes.Table}
       tableLayout="auto"
       columns={studentsColumn}
       dataSource={sortedStudents}

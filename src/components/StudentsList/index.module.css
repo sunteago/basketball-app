@@ -1,0 +1,10 @@
+.Table {
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .Table {
+    margin-top: -0;
+    margin-right: 3rem;
+  }
+}

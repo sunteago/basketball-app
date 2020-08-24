@@ -1,0 +1,57 @@
+.Layout {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 100vh;
+  position: relative;
+}
+
+.Header {
+  position: absolute;
+  padding: 0 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.LogoLink {
+  width: 100%;
+  max-width: 3rem;
+}
+
+.Logo {
+  height: 32px;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.Content {
+  padding: 2rem 1rem;
+  margin-top: 64px;
+  position: relative;
+}
+.Content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../../assets/img/undraw_basketball_agx4.svg);
+  background-position: 40% 0%;
+  background-size: cover;
+  filter: grayscale(50%);
+}
+.module-inside {
+  position: relative;
+}
+
+.Footer {
+  background: var(--accent);
+}
+
+@media (min-width: 992px) {
+  .Content {
+    padding: 2rem 3rem;
+  }
+}

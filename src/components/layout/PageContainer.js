@@ -6,6 +6,7 @@ import { Layout } from "antd";
 import { PlusCircleOutlined, DoubleRightOutlined } from "@ant-design/icons";
 import Navbar from "./Navbar/";
 import Logo from "../../assets/img/basketball.svg";
+import FooterContent from "./Footer";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -37,7 +38,9 @@ export default function PageContainer(props) {
           {sideChildren}
         </Sider>
       </Layout>
-      <Footer>Footer</Footer>
+      <Footer className={classes.Footer}>
+        <FooterContent />
+      </Footer>
     </Layout>
   );
 }

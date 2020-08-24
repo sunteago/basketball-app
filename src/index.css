@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --accent: #ac5d14;
+  --main-washed: #e2e4f6;
+}
+
 body {
-  background: #e2e4f6;
+  background: var(--main-washed);
 }

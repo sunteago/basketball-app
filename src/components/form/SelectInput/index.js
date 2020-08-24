@@ -1,6 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import { Select } from "antd";
+import { shotPositions } from "../../../utils";
 
 const { Option } = Select;
 
@@ -20,12 +21,31 @@ function onSearch(val) {
   console.log("search:", val);
 }
 
-export default function SelectInput() {
+export default function SelectInput({ placeholder, students }) {
+  let selectInputList;
+
+  if (students) {
+    selectInputList =
+      students.length > 0
+        ? students.map((std) => (
+            <Option key={std.key} value={std.key}>
+              {std.student}
+            </Option>
+          ))
+        : null;
+  } else {
+    selectInputList = shotPositions.map((pos) => (
+      <Option key={pos.key} value={pos.position}>
+        {pos.positionName}
+      </Option>
+    ));
+  }
+
   return (
     <Select
       showSearch
       style={{ width: "100%" }}
-      placeholder="Tirador"
+      placeholder={placeholder}
       optionFilterProp="children"
       onChange={onChange}
       onFocus={onFocus}
@@ -35,9 +55,7 @@ export default function SelectInput() {
         option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
       }
     >
-      <Option value="jack">Jack</Option>
-      <Option value="lucy">Lucy</Option>
-      <Option value="tom">Tom</Option>
+      {selectInputList}
     </Select>
   );
 }

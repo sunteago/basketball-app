@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import classes from "./index.module.css";
+import React, { useState, useContext } from "react";
+import StudentsContext from "../../context/students/StudentsContext";
+
 import { Form, Checkbox, Button, InputNumber, Divider } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
+import classes from "./index.module.css";
 import SelectInput from "../form/SelectInput/";
 
 export default function AddShot() {
   const [checked, setChecked] = useState(false);
   const [distance, setDistance] = useState(1);
+
+  const { students } = useContext(StudentsContext);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -20,11 +24,11 @@ export default function AddShot() {
       <Divider className={classes.Divider} />
       <Form className={classes.FormContainer} onSubmit={onSubmitHandler}>
         <div className={classes.FormInput}>
-          <SelectInput />
+          <SelectInput placeholder="Alumno" students={students} />
         </div>
 
         <div className={classes.FormInput}>
-          <SelectInput />
+          <SelectInput placeholder="Posición" />
         </div>
 
         <div className={classes.FormInput}>

@@ -1,9 +1,12 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
+
 import PageContainer from "../components/layout/PageContainer";
-import AddShot from "../components/AddShot/";
+
 import Dashboard from "../components/Dashboard";
+import About from "../components/About";
 import AddStudent from "../components/AddStudent";
+import AddShot from "../components/AddShot/";
 
 export default function AppRoutes() {
   return (
@@ -12,6 +15,9 @@ export default function AppRoutes() {
         <Switch>
           <Route path="/add-student">
             <AddStudent />
+          </Route>
+          <Route path="/about">
+            <About />
           </Route>
           <Route path="/">
             <Dashboard />

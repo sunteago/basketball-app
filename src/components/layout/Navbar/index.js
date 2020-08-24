@@ -7,6 +7,7 @@ export default function Navbar() {
 
   let selectedKey = "1";
   location.pathname === "/add-student" && (selectedKey = "2");
+  location.pathname === "/about" && (selectedKey = "3");
 
   return (
     <Menu theme="dark" mode="horizontal" selectedKeys={selectedKey}>
@@ -15,6 +16,9 @@ export default function Navbar() {
       </Menu.Item>
       <Menu.Item key="2">
         <Link to="/add-student">Agregar Alumno</Link>
+      </Menu.Item>
+      <Menu.Item key="3">
+        <Link to="/about">Acerca</Link>
       </Menu.Item>
     </Menu>
   );

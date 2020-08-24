@@ -1,5 +1,10 @@
 .Form {
   margin-top: 1rem;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1000;
+  padding: 1.5rem 2rem 0.5rem 2rem;
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .FormButtons > div > div > div {
@@ -11,5 +16,4 @@
 
 .FormButtons button {
   flex: 0 1 30%;
-  margin-bottom: 1rem;
 }

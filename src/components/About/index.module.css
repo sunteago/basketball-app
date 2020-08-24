@@ -1,20 +1,11 @@
-.About {
-  position: relative;
-  font-size: 1rem;
-  z-index: 1000;
-  margin-top: 2rem;
-  padding: 2.5rem 2rem 1.5rem 2rem;
-  background: rgba(255, 255, 255, 0.85);
-}
-
-li {
-  list-style: none;
-}
-
 ul li:first-child {
   margin-top: 0.5rem;
 }
 
 .SocialNetworkIcon {
   margin-right: 0.3rem;
+}
+
+.SocialNetworkList li {
+  list-style: none;
 }

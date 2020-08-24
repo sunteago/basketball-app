@@ -1,8 +1,11 @@
 import React, { useContext } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Typography } from "antd";
+
 import classes from "./index.module.css";
 import StudentsList from "../StudentsList";
 import StudentsContext from "../../context/students/StudentsContext";
+
+const { Title } = Typography;
 
 const requiredRules = (field) => [
   {
@@ -36,6 +39,7 @@ export default function AddStudent() {
 
   return (
     <>
+      <Title>Agregar Alumno</Title>
       <Form
         className={classes.Form}
         form={form}

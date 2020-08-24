@@ -36,6 +36,9 @@ export default function StudentsList() {
       columns={studentsColumn}
       dataSource={sortedStudents}
       size="small"
+      locale={{
+        emptyText: "No has agregado a ningun alumno aún",
+      }}
     />
   );
 }

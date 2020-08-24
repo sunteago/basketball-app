@@ -26,13 +26,15 @@ const studentsColumn = [
 
 export default function StudentsList() {
   const { students } = useContext(StudentsContext);
-  console.log(students);
+
+  const sortedStudents = students.sort((a, b) => b.added - a.added);
+
   return (
     <Table
       // className={classes.Table}
       tableLayout="auto"
       columns={studentsColumn}
-      dataSource={students}
+      dataSource={sortedStudents}
       size="small"
     />
   );

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Form, Input, Button } from "antd";
 import classes from "./index.module.css";
 import StudentsList from "../StudentsList";
+import StudentsContext from "../../context/students/StudentsContext";
 
 const requiredRules = (field) => [
   {
@@ -16,11 +17,22 @@ const requiredRules = (field) => [
 export default function AddStudent() {
   const [form] = Form.useForm();
 
+  const { setStudents } = useContext(StudentsContext);
+
   const onFinish = (values) => {
-    console.log(values);
+    setStudents((prevStudents) => [
+      ...prevStudents,
+      {
+        student: values.student,
+        docket: values.docket,
+        added: new Date().getTime(),
+        key: Math.random(),
+      },
+    ]);
+    resetFields();
   };
 
-  const onReset = () => form.resetFields();
+  const resetFields = () => form.resetFields();
 
   return (
     <>
@@ -45,7 +57,7 @@ export default function AddStudent() {
           <Button type="primary" htmlType="submit">
             Agregar
           </Button>
-          <Button htmlType="button" onClick={onReset}>
+          <Button htmlType="button" onClick={resetFields}>
             Borrar todo
           </Button>
         </Form.Item>

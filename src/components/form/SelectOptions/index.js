@@ -9,7 +9,7 @@ export default function SelectOptions({ students } = {}) {
   return students
     ? students.length > 0
       ? students.map((std) => (
-          <Option key={std.key} value={std.key}>
+          <Option key={std.key} value={std.student}>
             {std.student}
           </Option>
         ))

@@ -31,3 +31,7 @@ export const shotPositions = [
     key: Math.random(),
   },
 ];
+
+export const getPositionFromId = (posId) => {
+  return shotPositions.find((pos) => pos.position === posId).positionName;
+};

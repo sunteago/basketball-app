@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ShotsContext from "./ShotsContext";
 
 export default function ShotsState({ children }) {
-  const [shots, setShots] = useState({});
+  const [shots, setShots] = useState([]);
 
   useEffect(() => {
     const savedShots = sessionStorage.getItem("bbApp_shots");

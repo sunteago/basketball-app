@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Table, Grid } from "antd";
 import classes from "./index.module.css";
+import ShotsContext from "../../context/shots/ShotsContext";
+import { getPositionFromId } from "../../utils";
 
 const shotsColumns = [
   {
@@ -25,6 +27,7 @@ const shotsColumns = [
     title: "Posición",
     key: "position",
     dataIndex: "position",
+    render: getPositionFromId,
   },
   {
     title: "Borrar",
@@ -33,38 +36,17 @@ const shotsColumns = [
   },
 ];
 
-const data = [
-  {
-    key: "1",
-    student: "John Brown",
-    distance: 2,
-    scored: false,
-    position: "developer",
-  },
-  {
-    key: "2",
-    student: "Jim Green",
-    distance: 4,
-    scored: true,
-    position: "loser",
-  },
-  {
-    key: "3",
-    student: "Joe Black",
-    distance: 7,
-    scored: true,
-    position: "cool",
-  },
-];
-
 export default function Dashboard() {
   const screens = Grid.useBreakpoint();
+
+  const { shots } = useContext(ShotsContext);
+
   return (
     <Table
       className={classes.Table}
       tableLayout="auto"
       columns={shotsColumns}
-      dataSource={data}
+      dataSource={shots}
       size={screens.md ? "large" : "small"}
     />
   );

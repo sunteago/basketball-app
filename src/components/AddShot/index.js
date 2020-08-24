@@ -16,20 +16,21 @@ export default function AddShot() {
   const { setShots } = useContext(ShotsContext);
 
   const onFinishHandler = (values) => {
-    console.log(values);
     setShots((prevShots) => [
       ...prevShots,
       {
-        student: values.student,
-        docket: values.docket,
-        added: new Date().getTime(),
         key: Math.random(),
+        student: values.student,
+        position: values.position,
+        distance: values.distance,
+        scored: checked,
       },
     ]);
     resetFields();
   };
 
   const resetFields = () => form.resetFields();
+
   return (
     <>
       <div className={classes.TitleContainer}>
@@ -48,7 +49,6 @@ export default function AddShot() {
           student: "",
           position: "",
           distance: 1.5,
-          scored: true,
         }}
       >
         <Form.Item
@@ -104,7 +104,6 @@ export default function AddShot() {
         </Form.Item>
 
         <Form.Item
-          name="scored"
           labelAlign="left"
           colon={false}
           className={`${classes.FormInput} ${classes.SwitchContainer}`}
@@ -126,7 +125,6 @@ export default function AddShot() {
             type="primary"
             size="small"
             htmlType="submit"
-            disabled={false}
             icon={<PlusCircleOutlined />}
           >
             Agregar Tiro

@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import classes from "./PageContainer.module.css";
+import classes from "./index.module.css";
 import { Layout } from "antd";
 import { PlusCircleOutlined, DoubleRightOutlined } from "@ant-design/icons";
-import Navbar from "./Navbar/";
-import Logo from "../../assets/img/basketball.svg";
-import FooterContent from "./Footer";
+import Navbar from "../Navbar";
+import Logo from "../../../assets/img/basketball.svg";
+import FooterContent from "../Footer";
 
 const { Header, Footer, Sider, Content } = Layout;
 
 export default function PageContainer(props) {
-  const { currPage, setCurrPage, children, sideChildren } = props;
+  const { children, sideChildren } = props;
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   return (
@@ -28,7 +28,6 @@ export default function PageContainer(props) {
           trigger={
             isCollapsed ? <PlusCircleOutlined /> : <DoubleRightOutlined />
           }
-          onCollapse={() => console.log("hasd")}
           breakpoint="lg"
           collapsedWidth="0"
           reverseArrow

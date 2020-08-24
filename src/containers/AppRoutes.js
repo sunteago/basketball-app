@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
-import PageContainer from "../components/layout/PageContainer";
+import PageContainer from "../components/layout/PageContainer/";
 
 import Dashboard from "../components/Dashboard";
 import About from "../components/About";

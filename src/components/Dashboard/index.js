@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Table, Grid } from "antd";
 import classes from "./index.module.css";
+import ShotsContext from "../../context/shots/ShotsContext";
+import { getPositionFromId } from "../../utils";
 
-const shotsColumns = [
+const shotsColumns = (onDelete) => [
   {
     title: "Tirador",
     dataIndex: "student",
@@ -25,46 +27,36 @@ const shotsColumns = [
     title: "Posición",
     key: "position",
     dataIndex: "position",
+    render: getPositionFromId,
   },
   {
     title: "Borrar",
-    key: "action",
-    render: () => <span className={classes.DeleteIcon}>&times;</span>,
-  },
-];
-
-const data = [
-  {
-    key: "1",
-    student: "John Brown",
-    distance: 2,
-    scored: false,
-    position: "developer",
-  },
-  {
-    key: "2",
-    student: "Jim Green",
-    distance: 4,
-    scored: true,
-    position: "loser",
-  },
-  {
-    key: "3",
-    student: "Joe Black",
-    distance: 7,
-    scored: true,
-    position: "cool",
+    key: "key",
+    render: (shot) => (
+      <span onClick={onDelete(shot)} className={classes.DeleteIcon}>
+        &times;
+      </span>
+    ),
   },
 ];
 
 export default function Dashboard() {
   const screens = Grid.useBreakpoint();
+
+  const { shots, setShots } = useContext(ShotsContext);
+
+  const onDeleteHandler = (shot) => () => {
+    setShots(shots.filter((shotItem) => shotItem.key !== shot.key));
+  };
+
+  const sortedShots = shots.sort((a, b) => b.date - a.date);
+
   return (
     <Table
       className={classes.Table}
       tableLayout="auto"
-      columns={shotsColumns}
-      dataSource={data}
+      columns={shotsColumns(onDeleteHandler)}
+      dataSource={sortedShots}
       size={screens.md ? "large" : "small"}
     />
   );

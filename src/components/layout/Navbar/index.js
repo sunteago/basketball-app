@@ -9,7 +9,7 @@ export default function Navbar() {
   location.pathname === "/add-student" && (selectedKey = "2");
 
   return (
-    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={selectedKey}>
+    <Menu theme="dark" mode="horizontal" selectedKeys={selectedKey}>
       <Menu.Item key="1">
         <Link to="/">Inicio</Link>
       </Menu.Item>

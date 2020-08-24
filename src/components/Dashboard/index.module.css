@@ -1,0 +1,12 @@
+.Table {
+  overflow-x: auto;
+}
+.Table td {
+  background: #fff;
+}
+
+.DeleteIcon {
+  cursor: pointer;
+  color: #880101;
+  font-size: 1rem;
+}

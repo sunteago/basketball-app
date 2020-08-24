@@ -15,13 +15,37 @@
 }
 
 .Content {
-  padding: 2rem 3rem;
+  padding: 2rem 1rem;
   margin-top: 64px;
+  position: relative;
+}
+.Content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: url(../../assets/img/undraw_basketball_agx4.svg);
+  filter: grayscale(50%);
+}
+.module-inside {
+  position: relative;
+}
+
+.LogoLink {
+  width: 100%;
+  max-width: 3rem;
 }
 
 .Logo {
   max-height: 32px;
   margin-right: 1rem;
   cursor: pointer;
+}
+
+@media (min-width: 992px) {
+  .Content {
+    padding: 2rem 3rem;
+  }
 }

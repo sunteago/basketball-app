@@ -7,6 +7,13 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
 import SelectInput from "../form/SelectOptions";
 
+const requiredRules = (field) => [
+  {
+    message: `Seleccione ${field}`,
+    required: true,
+  },
+];
+
 export default function AddShot() {
   const [checked, setChecked] = useState(false);
 
@@ -57,6 +64,7 @@ export default function AddShot() {
           labelCol={{ span: 12 }}
           label="Alumno"
           className={classes.FormInput}
+          rules={requiredRules("alumno")}
         >
           <Select
             showSearch
@@ -76,6 +84,7 @@ export default function AddShot() {
           name="position"
           label="Posición"
           className={classes.FormInput}
+          rules={requiredRules("posición")}
         >
           <Select
             showSearch
@@ -94,6 +103,7 @@ export default function AddShot() {
           name="distance"
           label="Metros"
           className={`${classes.FormInput}`}
+          rules={requiredRules("metros")}
         >
           <InputNumber
             className={classes.Meters}

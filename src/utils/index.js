@@ -33,5 +33,7 @@ export const shotPositions = [
 ];
 
 export const getPositionFromId = (posId) => {
-  return shotPositions.find((pos) => pos.position === posId).positionName;
+  return (
+    posId && shotPositions.find((pos) => pos.position === posId).positionName
+  );
 };

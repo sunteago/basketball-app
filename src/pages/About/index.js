@@ -10,21 +10,26 @@ const { Paragraph, Title } = Typography;
 function About() {
   return (
     <div className={classes.About}>
-      <Title style={{ overflowWrap: "normal" }}>Acerca de Basketball App</Title>
+      <Title style={{ overflowWrap: "normal" }}>Basketball App</Title>
       <Paragraph>
         Esta App fue creada espacialmente para{" "}
         <span>hiring@tiendadolar.com.ar</span> por <span>Santiago Vallejo</span>
       </Paragraph>
       <Paragraph>
-        Características de la App:
+        Principales características
         <ul>
+          <li>
+            aplicación web progresiva, por lo que funciona sin conexión a
+            internet
+          </li>
           <li>diseño plano y responsive</li>
           <li>agregar alumno</li>
           <li>borrar alumno</li>
-          <li>agregar tiro de alumno previamente agregado</li>
+          <li>agregar tiro de un alumno previamente agregado</li>
           <li>borrar tiro</li>
           <li>validación de formularios</li>
           <li>dashboard para ver ultimos tiros agregados</li>
+          <li>visualizacion del estado actual de los tiros</li>
         </ul>
       </Paragraph>
       <Paragraph>

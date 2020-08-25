@@ -121,6 +121,7 @@ export default function AddShot() {
             className={classes.SelectStudent}
             onClick={() => setDropdownOpen(!dropdownOpen)}
             notFoundContent={studentsNotFound}
+            onChange={() => setDropdownOpen(false)}
           >
             {SelectInput({ students })}
           </Select>

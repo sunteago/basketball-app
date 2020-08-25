@@ -52,6 +52,7 @@ export default function StudentsList() {
       locale={{
         emptyText: "No has agregado a ningun alumno aún",
       }}
+      pagination={{ pageSize: 5 }}
     />
   );
 }

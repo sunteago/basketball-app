@@ -1,6 +1,8 @@
 ## Basketball App
 
-Esta App fue creada espacialmente para hiring@tiendadolar.com.ar por Santiago Vallejo.  
+Esta App fue creada espacialmente para hiring@tiendadolar.com.ar por Santiago Vallejo.
+[Demo](https://basketball-app.netlify.app/)  
+
 Principales características
 
 - aplicación web progresiva, por lo que funciona sin conexión a internet
@@ -14,7 +16,6 @@ Principales características
 - visualizacion del estado actual de los tiros
 
 Construido con:
-
 - React.js
 - AntDesign
 - chart.js

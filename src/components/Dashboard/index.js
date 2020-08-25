@@ -3,6 +3,7 @@ import { Table, Grid, Typography } from "antd";
 import classes from "./index.module.css";
 import ShotsContext from "../../context/shots/ShotsContext";
 import { getPositionFromId } from "../../utils";
+import Visualization from "../Visualization";
 
 const { Title } = Typography;
 
@@ -56,7 +57,7 @@ export default function Dashboard() {
     setShots(shots.filter((shotItem) => shotItem.key !== shot.key));
   };
 
-  const sortedShots = shots && shots.sort((a, b) => b.date - a.date);
+  const sortedShots = shots && [...shots].sort((a, b) => b.date - a.date);
 
   return (
     <>
@@ -73,6 +74,7 @@ export default function Dashboard() {
           emptyText: "No has agregado a ningun tiro aún",
         }}
       />
+      <Visualization shots={shots} />
     </>
   );
 }

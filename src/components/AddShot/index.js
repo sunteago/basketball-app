@@ -29,7 +29,6 @@ const selectProps = {
 export default function AddShot() {
   const [checked, setChecked] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState("");
 
   const [form] = Form.useForm();
 
@@ -42,17 +41,20 @@ export default function AddShot() {
 
   useEffect(() => {
     let timerId;
-    if (!isCollapsed && !selectedStudent) {
-      if (students.length > 0) {
-        studentsSelectRef.current.focus();
+    if (!isCollapsed) {
+      studentsSelectRef.current.focus();
+      if (students.length === 0) {
+        timerId = setTimeout(() => setIsDropdownOpen(true), 200);
       }
-      timerId = setTimeout(() => setIsDropdownOpen(true), 200);
     }
-    if (isCollapsed && isDropdownOpen) setIsDropdownOpen(false);
     return () => {
       if (timerId) clearTimeout(timerId);
     };
-  }, [selectedStudent, isDropdownOpen, isCollapsed, students]);
+  }, [isCollapsed, students.length]);
+
+  useEffect(() => {
+    if (isCollapsed && isDropdownOpen) setIsDropdownOpen(false);
+  }, [isDropdownOpen, isCollapsed]);
 
   const onFinishHandler = (values) => {
     setShots((prevShots) => [
@@ -119,7 +121,6 @@ export default function AddShot() {
             open={isDropdownOpen}
             ref={studentsSelectRef}
             className={classes.SelectStudent}
-            onSelect={setSelectedStudent}
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             notFoundContent={studentsNotFound}
             onChange={() => setIsDropdownOpen(false)}

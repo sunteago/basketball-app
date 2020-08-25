@@ -1,5 +1,6 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
+
 import classes from "./index.module.css";
 import { generateVisual } from "../../utils";
 import { Typography } from "antd";

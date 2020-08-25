@@ -7,13 +7,13 @@ import UIContext from "../../context/UI/UIContext";
 import { Form, Button, InputNumber, Divider, Checkbox, Select } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
-import InputOptions from "../InputOptions";
+import InputOptions from "./InputOptions";
 import { addShotRules } from "../../utils";
+import { Shot } from "../../models";
 
 const selectProps = {
   showSearch: true,
   style: { width: "100%" },
-  placeholder: "Alumno",
   optionFilterProp: "children",
   filterOption: (input, option) =>
     option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0,

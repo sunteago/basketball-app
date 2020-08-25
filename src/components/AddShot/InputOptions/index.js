@@ -1,7 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import { Select } from "antd";
-import { shotPositions } from "../../utils";
+import { shotPositions } from "../../../utils";
 
 const { Option } = Select;
 

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Table, Grid, Typography } from "antd";
+import { Table, Grid, Typography, Divider } from "antd";
 import classes from "./index.module.css";
 import ShotsContext from "../../context/shots/ShotsContext";
 import { getPositionFromId } from "../../utils";
@@ -73,7 +73,9 @@ export default function Dashboard() {
         locale={{
           emptyText: "No has agregado a ningun tiro aún",
         }}
+        pagination={{ pageSize: 5 }}
       />
+      <Divider dashed style={{ borderColor: "#001529" }} />
       <Visualization shots={shots} />
     </>
   );

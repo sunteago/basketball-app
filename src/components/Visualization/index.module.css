@@ -1,0 +1,13 @@
+.Title {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.DoughContainer {
+  max-width: 100%;
+}
+
+.NoShotsMessage {
+  text-align: center;
+  height: 300px;
+}

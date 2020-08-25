@@ -70,7 +70,7 @@ export default function AddShot() {
     ]);
     resetFields();
     history.push("/");
-    setTimeout(() => setIsDropdownOpen(true), 300);
+    setChecked(false);
   };
 
   const onClickAddStudent = () => {

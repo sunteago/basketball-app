@@ -25,5 +25,6 @@ Otros Proyectos mios.
 - [Acoron Social Network](https://acoron.netlify.app/) (React.js, Node.js, MongoDB y Bootstrap)
 - [TeamsApp](https://teamsapp.web.app/) (React.js, Redux, Firebase y Material UI)
 
+Mis redes:  
 - [Perfil de Github](https://github.com/sunteago)
 - [Perfil de LinkedIn](https://github.com/sunteago)

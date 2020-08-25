@@ -1,26 +1,12 @@
-import React, { useContext, useRef, useEffect } from "react";
-import { Form, Input, Button, Typography } from "antd";
-
+import React, { useRef, useEffect } from "react";
+import { Form, Input, Button } from "antd";
 import classes from "./index.module.css";
-import StudentsList from "../StudentsList";
-import StudentsContext from "../../context/students/StudentsContext";
 
-const { Title } = Typography;
+import { Student } from "../../models";
+import { addStudentRules } from "../../utils";
 
-const requiredRules = (field) => [
-  {
-    transform: (val = "") => val.trim(),
-    message: `El ${field} es inválido o demasiado corto!`,
-    required: true,
-    min: 5,
-    whitespace: true,
-  },
-];
-
-export default function AddStudent() {
+export default function Students({ setStudents }) {
   const [form] = Form.useForm();
-
-  const { setStudents } = useContext(StudentsContext);
 
   const studentRef = useRef();
 
@@ -29,59 +15,38 @@ export default function AddStudent() {
   }, []);
 
   const onFinishHandler = (values) => {
-    setStudents((prevStudents) => [
-      ...prevStudents,
-      {
-        student: values.student,
-        docket: values.docket,
-        added: new Date().getTime(),
-        key: Math.random(),
-      },
-    ]);
-    resetFields();
+    setStudents((prevStudents) => [...prevStudents, new Student(values)]);
+    form.resetFields();
     studentRef.current.focus();
   };
 
-  const resetFields = () => form.resetFields();
-
   return (
-    <>
-      <Title className={classes.Title}>Nuevo Alumno</Title>
-      <div className={classes.Container}>
-        <Form
-          className={classes.Form}
-          form={form}
-          name="control-hooks"
-          onFinish={onFinishHandler}
-        >
-          <Form.Item
-            className={classes.FormItem}
-            name="student"
-            label="Alumno"
-            rules={requiredRules("alumno")}
-          >
-            <Input ref={studentRef} />
-          </Form.Item>
-          <Form.Item
-            className={classes.FormItem}
-            name="docket"
-            label="Legajo"
-            rules={requiredRules("legajo")}
-          >
-            <Input />
-          </Form.Item>
+    <Form className={classes.Form} form={form} onFinish={onFinishHandler}>
+      <Form.Item
+        className={classes.FormItem}
+        name="student"
+        label="Alumno"
+        rules={addStudentRules("alumno")}
+      >
+        <Input ref={studentRef} />
+      </Form.Item>
+      <Form.Item
+        className={classes.FormItem}
+        name="docket"
+        label="Legajo"
+        rules={addStudentRules("legajo")}
+      >
+        <Input />
+      </Form.Item>
 
-          <Form.Item className={classes.FormButtons}>
-            <Button type="primary" htmlType="submit">
-              Agregar
-            </Button>
-            <Button htmlType="button" onClick={resetFields}>
-              Limpiar campos
-            </Button>
-          </Form.Item>
-        </Form>
-        <StudentsList />
-      </div>
-    </>
+      <Form.Item className={classes.FormButtons}>
+        <Button type="primary" htmlType="submit">
+          Agregar
+        </Button>
+        <Button htmlType="button" onClick={form.resetFields}>
+          Limpiar campos
+        </Button>
+      </Form.Item>
+    </Form>
   );
 }

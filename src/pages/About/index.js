@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./index.module.css";
 import { Typography } from "antd";
 import { LinkedinFilled, GithubFilled } from "@ant-design/icons";
-import ImageDecoration from "../../assets/img/undraw_greek_freak_j2qb.svg";
+import ImageDecoration from "../../assets/img/undraw-basketball-2.svg";
 
 const { Paragraph, Title } = Typography;
 

@@ -1,27 +1,19 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
-import StudentsContext from "../../context/students/StudentsContext";
-import ShotsContext from "../../context/shots/ShotsContext";
+import studentsContext from "../../context/students/studentsContext";
 import UIContext from "../../context/UI/UIContext";
 
 import { Form, Button, InputNumber, Divider, Checkbox, Select } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
-import SelectInput from "../form/SelectOptions";
-import { Link } from "react-router-dom";
-
-const requiredRules = (field) => [
-  {
-    message: `Seleccione ${field}`,
-    required: true,
-  },
-];
+import InputOptions from "./InputOptions";
+import { addShotRules } from "../../utils";
+import { Shot } from "../../models";
 
 const selectProps = {
   showSearch: true,
   style: { width: "100%" },
-  placeholder: "Alumno",
   optionFilterProp: "children",
   filterOption: (input, option) =>
     option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0,
@@ -30,12 +22,10 @@ const selectProps = {
 export default function AddShot() {
   const [checked, setChecked] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState("");
 
   const [form] = Form.useForm();
 
-  const { students } = useContext(StudentsContext);
-  const { setShots } = useContext(ShotsContext);
+  const { students, setShots } = useContext(studentsContext);
   const { isCollapsed, setIsCollapsed, screens } = useContext(UIContext);
 
   const studentsSelectRef = useRef();
@@ -44,31 +34,24 @@ export default function AddShot() {
 
   useEffect(() => {
     let timerId;
-    if (!isCollapsed && !selectedStudent) {
-      if (students.length > 0) {
-        studentsSelectRef.current.focus();
+    if (!isCollapsed) {
+      studentsSelectRef.current.focus();
+      if (students.length === 0) {
+        timerId = setTimeout(() => setIsDropdownOpen(true), 200);
       }
-      timerId = setTimeout(() => setIsDropdownOpen(true), 200);
     }
-    if (isCollapsed && isDropdownOpen) setIsDropdownOpen(false);
     return () => {
       if (timerId) clearTimeout(timerId);
     };
-  }, [selectedStudent, isDropdownOpen, isCollapsed, students]);
+  }, [isCollapsed, students.length]);
+
+  useEffect(() => {
+    if (isCollapsed && isDropdownOpen) setIsDropdownOpen(false);
+  }, [isDropdownOpen, isCollapsed]);
 
   const onFinishHandler = (values) => {
-    setShots((prevShots) => [
-      ...prevShots,
-      {
-        key: Math.random(),
-        student: values.student,
-        position: values.position,
-        distance: values.distance,
-        scored: checked,
-        date: Date.now(),
-      },
-    ]);
-    resetFields();
+    setShots((prevShots) => [...prevShots, new Shot(values, checked)]);
+    form.resetFields();
     history.push("/");
     setChecked(false);
   };
@@ -86,8 +69,6 @@ export default function AddShot() {
       </Link>
     </span>
   );
-
-  const resetFields = () => form.resetFields();
 
   return (
     <>
@@ -114,19 +95,18 @@ export default function AddShot() {
           labelCol={{ span: 12 }}
           label="Alumno"
           className={classes.FormInput}
-          rules={requiredRules("alumno")}
+          rules={addShotRules("alumno")}
         >
           <Select
             {...selectProps}
             open={isDropdownOpen}
             ref={studentsSelectRef}
             className={classes.SelectStudent}
-            onSelect={setSelectedStudent}
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             notFoundContent={studentsNotFound}
             onChange={() => setIsDropdownOpen(false)}
           >
-            {SelectInput({ students })}
+            {InputOptions({ students })}
           </Select>
         </Form.Item>
 
@@ -135,16 +115,16 @@ export default function AddShot() {
           name="position"
           label="Posición"
           className={classes.FormInput}
-          rules={requiredRules("posición")}
+          rules={addShotRules("posición")}
         >
-          <Select {...selectProps}>{SelectInput()}</Select>
+          <Select {...selectProps}>{InputOptions()}</Select>
         </Form.Item>
 
         <Form.Item
           name="distance"
           label="Metros"
           className={`${classes.FormInput}`}
-          rules={requiredRules("metros")}
+          rules={addShotRules("metros")}
         >
           <InputNumber
             className={classes.Meters}

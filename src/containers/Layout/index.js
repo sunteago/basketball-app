@@ -1,19 +1,19 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import UIContext from "../../../context/UI/UIContext";
+import UIContext from "../../context/UI/UIContext";
 
 import classes from "./index.module.css";
 import { Layout } from "antd";
 import { PlusCircleOutlined, DoubleRightOutlined } from "@ant-design/icons";
-import Logo from "../../../assets/img/basketball.svg";
+import Logo from "../../assets/img/basketball.svg";
 
-import Navbar from "../Navbar";
-import ContentBox from "../ContentBox";
-import FooterContent from "../Footer";
+import Navbar from "./Navbar";
+import PageContainer from "./PageContainer";
+import FooterContent from "./Footer";
 
 const { Header, Footer, Sider, Content } = Layout;
 
-export default function PageContainer(props) {
+export default function MainLayout(props) {
   const { children, sideChildren } = props;
   const { isCollapsed, setIsCollapsed } = useContext(UIContext);
 
@@ -27,7 +27,7 @@ export default function PageContainer(props) {
       </Header>
       <Layout>
         <Content className={classes.Content}>
-          <ContentBox>{children}</ContentBox>
+          <PageContainer>{children}</PageContainer>
         </Content>
         <Sider
           trigger={

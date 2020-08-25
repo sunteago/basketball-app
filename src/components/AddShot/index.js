@@ -8,7 +8,7 @@ import UIContext from "../../context/UI/UIContext";
 import { Form, Button, InputNumber, Divider, Checkbox, Select } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
-import SelectInput from "../form/SelectOptions";
+import InputOptions from "../InputOptions";
 import { Link } from "react-router-dom";
 
 const requiredRules = (field) => [
@@ -126,7 +126,7 @@ export default function AddShot() {
             notFoundContent={studentsNotFound}
             onChange={() => setIsDropdownOpen(false)}
           >
-            {SelectInput({ students })}
+            {InputOptions({ students })}
           </Select>
         </Form.Item>
 
@@ -137,7 +137,7 @@ export default function AddShot() {
           className={classes.FormInput}
           rules={requiredRules("posición")}
         >
-          <Select {...selectProps}>{SelectInput()}</Select>
+          <Select {...selectProps}>{InputOptions()}</Select>
         </Form.Item>
 
         <Form.Item

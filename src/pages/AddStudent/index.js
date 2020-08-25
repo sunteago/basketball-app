@@ -2,7 +2,7 @@ import React, { useContext, useRef, useEffect } from "react";
 import { Form, Input, Button, Typography } from "antd";
 
 import classes from "./index.module.css";
-import StudentsList from "../StudentsList";
+import StudentsList from "../../components/StudentsList";
 import StudentsContext from "../../context/students/StudentsContext";
 
 const { Title } = Typography;

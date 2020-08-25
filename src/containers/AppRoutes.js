@@ -1,17 +1,17 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
-import PageContainer from "../components/layout/PageContainer/";
+import Layout from "./Layout";
 
-import Dashboard from "../components/Dashboard";
-import About from "../components/About";
-import AddStudent from "../components/AddStudent";
+import Dashboard from "../pages/Dashboard";
+import About from "../pages/About";
+import AddStudent from "../pages/AddStudent";
 import AddShot from "../components/AddShot/";
 
 export default function AppRoutes() {
   return (
     <Router>
-      <PageContainer sideChildren={<AddShot />}>
+      <Layout sideChildren={<AddShot />}>
         <Switch>
           <Route path="/add-student">
             <AddStudent />
@@ -23,7 +23,7 @@ export default function AppRoutes() {
             <Dashboard />
           </Route>
         </Switch>
-      </PageContainer>
+      </Layout>
     </Router>
   );
 }

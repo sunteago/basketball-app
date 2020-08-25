@@ -3,7 +3,7 @@ import { Table, Grid, Typography, Divider } from "antd";
 import classes from "./index.module.css";
 import ShotsContext from "../../context/shots/ShotsContext";
 import { getPositionFromId } from "../../utils";
-import Visualization from "../Visualization";
+import Visualization from "../../components/Visualization";
 
 const { Title } = Typography;
 

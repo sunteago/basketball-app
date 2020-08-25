@@ -83,3 +83,21 @@ export const generateVisual = (shots) => {
     ],
   };
 };
+
+export const addStudentRules = (field) => [
+  {
+    transform: (val = "") => val.trim(),
+    message: `El ${field} es inválido o demasiado corto!`,
+    required: true,
+    min: 5,
+    max: 15,
+    whitespace: true,
+  },
+];
+
+export const addShotRules = (field) => [
+  {
+    message: `Seleccione ${field}`,
+    required: true,
+  },
+];

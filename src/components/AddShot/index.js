@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import studentsContext from "../../context/students/studentsContext";
 import UIContext from "../../context/UI/UIContext";
@@ -8,14 +8,7 @@ import { Form, Button, InputNumber, Divider, Checkbox, Select } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
 import InputOptions from "../InputOptions";
-import { Link } from "react-router-dom";
-
-const requiredRules = (field) => [
-  {
-    message: `Seleccione ${field}`,
-    required: true,
-  },
-];
+import { addShotRules } from "../../utils";
 
 const selectProps = {
   showSearch: true,
@@ -57,18 +50,8 @@ export default function AddShot() {
   }, [isDropdownOpen, isCollapsed]);
 
   const onFinishHandler = (values) => {
-    setShots((prevShots) => [
-      ...prevShots,
-      {
-        key: Math.random(),
-        student: values.student,
-        position: values.position,
-        distance: values.distance,
-        scored: checked,
-        date: Date.now(),
-      },
-    ]);
-    resetFields();
+    setShots((prevShots) => [...prevShots, new Shot(values, checked)]);
+    form.resetFields();
     history.push("/");
     setChecked(false);
   };
@@ -86,8 +69,6 @@ export default function AddShot() {
       </Link>
     </span>
   );
-
-  const resetFields = () => form.resetFields();
 
   return (
     <>
@@ -114,7 +95,7 @@ export default function AddShot() {
           labelCol={{ span: 12 }}
           label="Alumno"
           className={classes.FormInput}
-          rules={requiredRules("alumno")}
+          rules={addShotRules("alumno")}
         >
           <Select
             {...selectProps}
@@ -134,7 +115,7 @@ export default function AddShot() {
           name="position"
           label="Posición"
           className={classes.FormInput}
-          rules={requiredRules("posición")}
+          rules={addShotRules("posición")}
         >
           <Select {...selectProps}>{InputOptions()}</Select>
         </Form.Item>
@@ -143,7 +124,7 @@ export default function AddShot() {
           name="distance"
           label="Metros"
           className={`${classes.FormInput}`}
-          rules={requiredRules("metros")}
+          rules={addShotRules("metros")}
         >
           <InputNumber
             className={classes.Meters}

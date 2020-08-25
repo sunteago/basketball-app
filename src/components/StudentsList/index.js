@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Table } from "antd";
 import classes from "./index.module.css";
-import studentsContext from "../../context/students/studentsContext";
 import { formatTime } from "../../utils";
 
 const studentsColumn = (onDelete) => [
@@ -34,9 +33,7 @@ const studentsColumn = (onDelete) => [
   },
 ];
 
-export default function StudentsList() {
-  const { students, setStudents } = useContext(studentsContext);
-
+export default function StudentsList({ students, setStudents }) {
   const onDeleteHandler = (student) => () => {
     setStudents(students.filter((std) => std.key !== student.key));
   };

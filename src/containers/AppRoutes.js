@@ -5,7 +5,7 @@ import Layout from "./Layout";
 
 import Dashboard from "../pages/Dashboard";
 import About from "../pages/About";
-import AddStudent from "../pages/AddStudent";
+import Students from "../pages/Students";
 import AddShot from "../components/AddShot/";
 
 export default function AppRoutes() {
@@ -14,7 +14,7 @@ export default function AppRoutes() {
       <Layout sideChildren={<AddShot />}>
         <Switch>
           <Route path="/add-student">
-            <AddStudent />
+            <Students />
           </Route>
           <Route path="/about">
             <About />

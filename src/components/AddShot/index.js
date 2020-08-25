@@ -29,7 +29,8 @@ const selectProps = {
 
 export default function AddShot() {
   const [checked, setChecked] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedStudent, setSelectedStudent] = useState("");
 
   const [form] = Form.useForm();
 
@@ -43,16 +44,17 @@ export default function AddShot() {
 
   useEffect(() => {
     let timerId;
-    if (!isCollapsed) {
+    if (!isCollapsed && !selectedStudent) {
       if (students.length > 0) {
         studentsSelectRef.current.focus();
       }
-      timerId = setTimeout(() => setDropdownOpen(true), 200);
+      timerId = setTimeout(() => setIsDropdownOpen(true), 200);
     }
+    if (isCollapsed && isDropdownOpen) setIsDropdownOpen(false);
     return () => {
       if (timerId) clearTimeout(timerId);
     };
-  }, [isCollapsed, students]);
+  }, [selectedStudent, isDropdownOpen, isCollapsed, students]);
 
   const onFinishHandler = (values) => {
     setShots((prevShots) => [
@@ -68,11 +70,11 @@ export default function AddShot() {
     ]);
     resetFields();
     history.push("/");
-    setTimeout(() => setDropdownOpen(true), 300);
+    setTimeout(() => setIsDropdownOpen(true), 300);
   };
 
   const onClickAddStudent = () => {
-    setDropdownOpen(false);
+    setIsDropdownOpen(false);
     if (!screens.lg && !screens.xl) setIsCollapsed(true);
   };
 
@@ -116,12 +118,13 @@ export default function AddShot() {
         >
           <Select
             {...selectProps}
-            open={dropdownOpen}
+            open={isDropdownOpen}
             ref={studentsSelectRef}
             className={classes.SelectStudent}
-            onClick={() => setDropdownOpen(!dropdownOpen)}
+            onSelect={setSelectedStudent}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             notFoundContent={studentsNotFound}
-            onChange={() => setDropdownOpen(false)}
+            onChange={() => setIsDropdownOpen(false)}
           >
             {SelectInput({ students })}
           </Select>

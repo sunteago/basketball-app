@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Table, Grid, Typography, Divider } from "antd";
 import classes from "./index.module.css";
-import ShotsContext from "../../context/shots/ShotsContext";
+import studentsContext from "../../context/students/studentsContext";
 import { getPositionFromId } from "../../utils";
 import Visualization from "../../components/Visualization";
 
@@ -51,7 +51,7 @@ const shotsColumns = (onDelete) => [
 export default function Dashboard() {
   const screens = Grid.useBreakpoint();
 
-  const { shots, setShots } = useContext(ShotsContext);
+  const { shots, setShots } = useContext(studentsContext);
 
   const onDeleteHandler = (shot) => () => {
     setShots(shots.filter((shotItem) => shotItem.key !== shot.key));

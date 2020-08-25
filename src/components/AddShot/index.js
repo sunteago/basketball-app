@@ -1,8 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import StudentsContext from "../../context/students/StudentsContext";
-import ShotsContext from "../../context/shots/ShotsContext";
+import studentsContext from "../../context/students/studentsContext";
 import UIContext from "../../context/UI/UIContext";
 
 import { Form, Button, InputNumber, Divider, Checkbox, Select } from "antd";
@@ -34,8 +33,7 @@ export default function AddShot() {
 
   const [form] = Form.useForm();
 
-  const { students } = useContext(StudentsContext);
-  const { setShots } = useContext(ShotsContext);
+  const { students, setShots } = useContext(studentsContext);
   const { isCollapsed, setIsCollapsed, screens } = useContext(UIContext);
 
   const studentsSelectRef = useRef();

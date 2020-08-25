@@ -3,7 +3,7 @@ import { Form, Input, Button, Typography } from "antd";
 
 import classes from "./index.module.css";
 import StudentsList from "../../components/StudentsList";
-import StudentsContext from "../../context/students/StudentsContext";
+import studentsContext from "../../context/students/studentsContext";
 
 const { Title } = Typography;
 
@@ -20,7 +20,7 @@ const requiredRules = (field) => [
 export default function AddStudent() {
   const [form] = Form.useForm();
 
-  const { setStudents } = useContext(StudentsContext);
+  const { setStudents } = useContext(studentsContext);
 
   const studentRef = useRef();
 

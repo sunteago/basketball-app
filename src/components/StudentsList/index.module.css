@@ -1,5 +1,7 @@
 .Table {
   margin-top: 3rem;
+  flex: 1 1 40%;
+  overflow-x: auto;
 }
 
 .DeleteIcon {

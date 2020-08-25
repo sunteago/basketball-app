@@ -20,16 +20,21 @@ const shotsColumns = (onDelete) => [
     render: (dis) => `${dis} mts`,
   },
   {
-    title: "Encestó?",
-    dataIndex: "scored",
-    key: "scored",
-    render: (scored) => `${scored ? "SI" : "NO"}`,
-  },
-  {
     title: "Posición",
     key: "position",
     dataIndex: "position",
     render: getPositionFromId,
+  },
+  {
+    title: "Encestó?",
+    dataIndex: "scored",
+    key: "scored",
+    render: (scored) =>
+      scored ? (
+        <span style={{ color: "green" }}>SI</span>
+      ) : (
+        <span style={{ color: "red" }}>NO</span>
+      ),
   },
   {
     title: "Borrar",

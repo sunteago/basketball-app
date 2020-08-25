@@ -5,12 +5,17 @@
 
 .Container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
 }
 .Form {
+  margin-top: 2rem;
   font-size: 1rem;
-  max-width: 90%;
+  flex: 1 1 40%;
+  max-width: 100%;
+}
+.Form > div {
+  margin: 0 auto 1rem auto;
 }
 
 .FormButtons > div > div > div {
@@ -45,9 +50,7 @@
 
 @media (min-width: 768px) {
   .Container {
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: flex-start;
+    justify-content: center;
   }
 }
 

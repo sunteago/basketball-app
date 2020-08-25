@@ -20,16 +20,21 @@ const shotsColumns = (onDelete) => [
     render: (dis) => `${dis} mts`,
   },
   {
-    title: "Encestó?",
-    dataIndex: "scored",
-    key: "scored",
-    render: (scored) => `${scored ? "SI" : "NO"}`,
-  },
-  {
     title: "Posición",
     key: "position",
     dataIndex: "position",
     render: getPositionFromId,
+  },
+  {
+    title: "Encestó?",
+    dataIndex: "scored",
+    key: "scored",
+    render: (scored) =>
+      scored ? (
+        <span style={{ color: "green" }}>SI</span>
+      ) : (
+        <span style={{ color: "red" }}>NO</span>
+      ),
   },
   {
     title: "Borrar",
@@ -55,7 +60,9 @@ export default function Dashboard() {
 
   return (
     <>
-      <Title style={{ marginBottom: "2rem" }}>Últimos tiros</Title>
+      <Title style={{ marginBottom: "2rem", overflowWrap: "normal" }}>
+        Últimos tiros
+      </Title>
       <Table
         className={classes.Table}
         tableLayout="auto"

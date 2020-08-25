@@ -1,17 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import StudentsContext from "../../context/students/StudentsContext";
 import ShotsContext from "../../context/shots/ShotsContext";
+import UIContext from "../../context/UI/UIContext";
 
-import {
-  Form,
-  Button,
-  InputNumber,
-  Divider,
-  Checkbox,
-  Select,
-  Typography,
-} from "antd";
+import { Form, Button, InputNumber, Divider, Checkbox, Select } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
 import SelectInput from "../form/SelectOptions";
@@ -35,12 +29,32 @@ const selectProps = {
 
 export default function AddShot() {
   const [checked, setChecked] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(true);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedStudent, setSelectedStudent] = useState("");
 
   const [form] = Form.useForm();
 
   const { students } = useContext(StudentsContext);
   const { setShots } = useContext(ShotsContext);
+  const { isCollapsed, setIsCollapsed, screens } = useContext(UIContext);
+
+  const studentsSelectRef = useRef();
+
+  const history = useHistory();
+
+  useEffect(() => {
+    let timerId;
+    if (!isCollapsed && !selectedStudent) {
+      if (students.length > 0) {
+        studentsSelectRef.current.focus();
+      }
+      timerId = setTimeout(() => setIsDropdownOpen(true), 200);
+    }
+    if (isCollapsed && isDropdownOpen) setIsDropdownOpen(false);
+    return () => {
+      if (timerId) clearTimeout(timerId);
+    };
+  }, [selectedStudent, isDropdownOpen, isCollapsed, students]);
 
   const onFinishHandler = (values) => {
     setShots((prevShots) => [
@@ -55,12 +69,19 @@ export default function AddShot() {
       },
     ]);
     resetFields();
+    history.push("/");
+    setTimeout(() => setIsDropdownOpen(true), 300);
+  };
+
+  const onClickAddStudent = () => {
+    setIsDropdownOpen(false);
+    if (!screens.lg && !screens.xl) setIsCollapsed(true);
   };
 
   const studentsNotFound = (
     <span>
       No existe alumno,{" "}
-      <Link onClick={() => setDropdownOpen(false)} to="/add-student">
+      <Link onClick={onClickAddStudent} to="/add-student">
         desea agregar?
       </Link>
     </span>
@@ -97,11 +118,13 @@ export default function AddShot() {
         >
           <Select
             {...selectProps}
-            open={dropdownOpen}
-            autoFocus
+            open={isDropdownOpen}
+            ref={studentsSelectRef}
             className={classes.SelectStudent}
-            onClick={() => setDropdownOpen(!dropdownOpen)}
+            onSelect={setSelectedStudent}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             notFoundContent={studentsNotFound}
+            onChange={() => setIsDropdownOpen(false)}
           >
             {SelectInput({ students })}
           </Select>

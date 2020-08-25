@@ -60,7 +60,9 @@ export default function Dashboard() {
 
   return (
     <>
-      <Title style={{ marginBottom: "2rem" }}>Últimos tiros</Title>
+      <Title style={{ marginBottom: "2rem", overflowWrap: "normal" }}>
+        Últimos tiros
+      </Title>
       <Table
         className={classes.Table}
         tableLayout="auto"

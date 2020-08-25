@@ -10,7 +10,7 @@ const { Paragraph, Title } = Typography;
 function About() {
   return (
     <div className={classes.About}>
-      <Title>Acerca de Basketball App</Title>
+      <Title style={{ overflowWrap: "normal" }}>Acerca de Basketball App</Title>
       <Paragraph>
         Esta App fue creada espacialmente para{" "}
         <span>hiring@tiendadolar.com.ar</span> por <span>Santiago Vallejo</span>

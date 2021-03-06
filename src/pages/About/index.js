@@ -12,8 +12,7 @@ function About() {
     <div className={classes.About}>
       <Title style={{ overflowWrap: "normal" }}>Basketball App</Title>
       <Paragraph>
-        Esta App fue creada espacialmente para{" "}
-        <span>hiring@tiendadolar.com.ar</span> por <span>Santiago Vallejo</span>
+        Esta App fue creada por <span>Santiago Vallejo</span>
       </Paragraph>
       <Paragraph>
         Principales características

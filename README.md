@@ -1,6 +1,5 @@
 ## Basketball App
 
-Esta App fue creada espacialmente para hiring@tiendadolar.com.ar por Santiago Vallejo.
 [Demo](https://basketball-app.netlify.app/)  
 
 Principales características
